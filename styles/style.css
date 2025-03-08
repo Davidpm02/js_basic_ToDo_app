@@ -1,0 +1,27 @@
+body {
+    background-color: #f1f2f6;
+}
+
+#upper_todo_header {
+    background-color: #343a41;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 60px;
+}
+
+#upper_todo_header #title_todo_header {
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto 10px;
+}
+
+#upper_todo_header #btn_todo_header {
+    height: 40px;
+    width: 100px;
+    margin: auto 10px;
+    color: white;
+    border-radius: 4px;
+    background-color: #29a846;
+}
