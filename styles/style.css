@@ -4,7 +4,7 @@ body {
 
 #upper_todo_header {
     background-color: #343a41;
-    border-radius: 10px;
+    border-radius: 3px 3px 15px 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -15,6 +15,7 @@ body {
     color: white;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: auto 10px;
+    font-size: 18px;
 }
 
 #upper_todo_header #btn_todo_header {
@@ -22,6 +23,6 @@ body {
     width: 100px;
     margin: auto 10px;
     color: white;
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: #29a846;
 }

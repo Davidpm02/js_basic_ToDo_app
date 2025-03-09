@@ -1,0 +1,109 @@
+#container_card_todo_app {
+    width: 250px;
+    height: 180px;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+}
+
+#container_card_todo_app #upper_header_container_card_todo_app {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+#container_card_todo_app #upper_header_container_card_todo_app #upper_header_title_container_card {
+    margin: auto 10px;
+    color: #343a41;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#container_card_todo_app #upper_header_container_card_todo_app #upper_header_checkbox_container_card {
+    margin: auto 10px;
+}
+
+
+#description_card_todo_app {
+    max-width: 90%;
+    margin: auto ;
+}
+
+#description_card_todo_app #content_description_card {
+    color: gray;
+}
+
+
+#footer_container_card_todo_app {
+    display: flex;
+    max-width: 90%;
+    margin: auto 10px;
+    gap: 6px;
+}
+
+#btn_edit_footer_container_card_todo_app {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #ffc007;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-size: 12px;
+}
+
+#btn_edit_footer_container_card_todo_app:hover {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #c59810;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-size: 12px;
+}
+
+#img_btn_edit {
+    width: 16px;
+    height: 30px;
+    filter: invert(100%) brightness(100%);
+}
+
+#btn_delete_footer_container_card_todo_app {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #da3544;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    width: 70px;
+}
+
+#btn_delete_footer_container_card_todo_app:hover {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #8a222a;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    width: 70px;
+}
+
+#img_btn_delete {
+    width: 16px;
+    height: 30px;
+    filter: invert(100%) brightness(100%);
+}
+
+
