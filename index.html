@@ -14,5 +14,31 @@
 
     <!-- Contenedor donde se despliegan todas las tareas TODO -->
     <div class="main_task_container"></div>
+
+    <!-- Modal para tareas -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nueva Tarea</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskTitle" class="taskTitle">Título:</label>
+                    <input type="text" id="taskTitle" name="taskTitle" placeholder="Ingresa el título de la tarea" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription" class="taskDescription">Descripción de la tarea:</label>
+                    <textarea id="taskDescription" name="taskDescription" rows="4" placeholder="Ingresa la descripción de la tarea" required></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-save" id="submitTaskBtn">Guardar</button>
+                    <button type="button" class="btn btn-cancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/main.js"></script>
 </body>
 </html>
