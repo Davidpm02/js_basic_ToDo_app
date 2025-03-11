@@ -40,6 +40,25 @@
         </div>
     </div>
 
+    <!-- Modal para la eliminación de tareas -->
+    <div id="deleteTaskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Eliminar Tarea</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de querer eliminar esta tarea?</p>
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-confirm">Confirmar</button>
+                    <button type="button" class="btn btn-cancel">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <script type="module" src="scripts/main.js"></script>
     <script type="module" src="scripts/todo_card.js"></script>  <!-- Fichero JS con lógica para las tarjetas de tareas -->
 </body>
