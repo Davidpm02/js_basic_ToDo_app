@@ -10,7 +10,10 @@
 <body>
     <div id="upper_todo_header">
         <h2 id="title_todo_header">Basic JS TODO App</h2>
-        <button id="btn_todo_header">+ Add TODO</button>
+        <div id="upper_todo_header_buttons">
+            <button id="btn_clear_all">DELETE All</button>
+            <button id="btn_todo_header">+ Add TODO</button>
+        </div>
     </div>
 
     <!-- Contenedor donde se despliegan todas las tareas TODO -->
@@ -52,6 +55,23 @@
                 <div class="modal-buttons">
                     <button type="button" class="btn btn-confirm">Confirmar</button>
                     <button type="button" class="btn btn-cancel">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para la eliminación de todas las tareas -->
+    <div id="deleteAllTasksModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Eliminar todas las tareas</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de querer eliminar todas las tareas?</p>
+                <div class="modal-buttons-delete-all">
+                    <button type="button" class="btn btn-confirm-delete-all">Confirmar</button>
+                    <button type="button" class="btn btn-cancel-delete-all">Cancelar</button>
                 </div>
             </div>
         </div>

@@ -5,7 +5,20 @@ let deleteTaskModal = document.getElementById('deleteTaskModal')
 let isEditing = false
 let cardBeingEdited = null
 let taskToDelete = null
+let deleteAllTasksModal = null
+let deleteAllTasksBtn = null
 
+// Esperar a que el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar variables que dependen del DOM
+    deleteAllTasksModal = document.getElementById('deleteAllTasksModal')
+    deleteAllTasksBtn = document.getElementById('btn_clear_all')
+
+    // Configurar evento para eliminar todas las tareas
+    if (deleteAllTasksBtn && deleteAllTasksModal) {
+        deleteAllTasksBtn.addEventListener('click', openDeleteAllTasksModal)
+    }
+})
 
 // Evento de agregación de nueva tarea
 btnAddTask.addEventListener('click', function () {
@@ -163,4 +176,57 @@ function closeDeleteTaskModal() {
     deleteTaskModal.style.display = "none"
     document.body.style.backgroundColor = "#f1f2f6"
     taskToDelete = null
+}
+
+
+// Evento de eliminación de todas las tareas
+if (deleteAllTasksBtn && deleteAllTasksModal) {
+    deleteAllTasksBtn.addEventListener('click', function() {
+        openDeleteAllTasksModal()
+    })
+}
+
+function openDeleteAllTasksModal() {
+    if (!deleteAllTasksModal) return
+
+    // Reviso si hay tareas para eliminar
+    const cardsCount = getCards()
+    if (cardsCount === 0) {
+        alert('No hay tareas para eliminar')
+        return
+    }
+    
+    deleteAllTasksModal.style.display = "block"
+    document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)"
+
+    // Remover event listeners existentes para evitar duplicados
+    const btnClose = deleteAllTasksModal.querySelector('.close')
+    const btnCancelDeleteAll = deleteAllTasksModal.querySelector('.btn-cancel-delete-all')
+    const btnConfirmDeleteAll = deleteAllTasksModal.querySelector('.btn-confirm-delete-all')
+    
+    // Crear nuevas funciones para los event listeners
+    const closeHandler = () => closeDeleteAllTasksModal()
+    const confirmHandler = () => {
+        const allCards = document.querySelectorAll('.card')
+        allCards.forEach(card => card.remove())
+        closeDeleteAllTasksModal()
+    }
+
+    // Agregar event listeners
+    btnClose.addEventListener('click', closeHandler, { once: true })
+    btnCancelDeleteAll.addEventListener('click', closeHandler, { once: true })
+    btnConfirmDeleteAll.addEventListener('click', confirmHandler, { once: true })
+}
+
+function closeDeleteAllTasksModal() {
+    if (!deleteAllTasksModal) return
+    
+    deleteAllTasksModal.style.display = "none"
+    document.body.style.backgroundColor = "#f1f2f6"
+}
+
+function getCards() {
+    const cards = document.querySelectorAll('.card')
+    console.log(Array.from(cards).length)
+    return Array.from(cards).length
 }

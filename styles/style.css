@@ -18,6 +18,13 @@ body {
     font-size: 18px;
 }
 
+#upper_todo_header_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 60px;
+}
+
 #upper_todo_header #btn_todo_header {
     height: 40px;
     width: 100px;
@@ -27,6 +34,21 @@ body {
     background-color: #29a846;
     cursor: pointer;
 }
+
+#upper_todo_header #btn_clear_all {
+    height: 40px;
+    width: 100px;
+    margin: auto 10px;
+    color: white;
+    border-radius: 5px;
+    background-color: #da3544;
+    cursor: pointer;
+}
+
+#upper_todo_header #btn_clear_all:hover {
+    background-color: #8a222a;
+}
+
 
 #upper_todo_header #btn_todo_header:hover {
     background-color: #218838;
@@ -144,6 +166,36 @@ body {
 
 .btn-confirm:hover {
     background-color: #8a222a;
+}
+
+/** ESTILOS PARA EL MODAL DE ELIMINACIÓN DE TODAS LAS TAREAS **/
+
+.modal-body-delete-all {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-buttons-delete-all {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}  
+
+.btn-confirm-delete-all {
+    background-color: #da3544;
+}
+
+.btn-confirm-delete-all:hover {
+    background-color: #8a222a;
+}
+
+.btn-cancel-delete-all {
+    background-color: #6c757d;
+}
+
+.btn-cancel-delete-all:hover {
+    background-color: #5a6268;
 }
 
 /** ESTILOS PARA CLASES DESTINADAS A TAREAS CUMPLIDAS **/
