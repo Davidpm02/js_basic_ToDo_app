@@ -124,6 +124,27 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+/** ESTILOS PARA EL MODAL DE ELIMINACIÓN DE TAREAS **/
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-confirm {
+    background-color: #da3544;
+}
+
+.btn-confirm:hover {
+    background-color: #8a222a;
+}
 
 /** ESTILOS PARA CLASES DESTINADAS A TAREAS CUMPLIDAS **/
 

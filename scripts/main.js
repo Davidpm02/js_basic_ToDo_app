@@ -1,8 +1,11 @@
 // Inicializamos las variables principales
 let btnAddTask = document.getElementById('btn_todo_header')
 let modal = document.getElementById('taskModal')
+let deleteTaskModal = document.getElementById('deleteTaskModal')
 let isEditing = false
 let cardBeingEdited = null
+let taskToDelete = null
+
 
 // Evento de agregación de nueva tarea
 btnAddTask.addEventListener('click', function () {
@@ -40,8 +43,14 @@ taskForm.addEventListener('submit', function (event) {
     event.preventDefault()
 
     // Obtengo los valores de los inputs
-    const taskTitle = document.getElementById('taskTitle').value
-    const taskDescription = document.getElementById('taskDescription').value
+    const taskTitle = document.getElementById('taskTitle').value.trim()
+    const taskDescription = document.getElementById('taskDescription').value.trim()
+    
+    // Validación de campos
+    if (!taskTitle || !taskDescription) {
+        alert('Por favor, complete todos los campos')
+        return
+    }
     
     if (isEditing && cardBeingEdited) {
         // Si estamos editando, actualizamos la tarjeta existente
@@ -57,11 +66,20 @@ taskForm.addEventListener('submit', function (event) {
 // Función para crear una nueva tarjeta
 function createNewCard(taskTitle, taskDescription) {
     fetch('../templates/todo_card.html')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo cargar la plantilla de la tarjeta')
+            }
+            return response.text()
+        })
         .then(html => {
             let parser = new DOMParser()
             let doc = parser.parseFromString(html, "text/html")
             let card = doc.body.firstElementChild
+
+            if (!card) {
+                throw new Error('Error al procesar la plantilla de la tarjeta')
+            }
 
             card.querySelector(".card-title").textContent = taskTitle
             card.querySelector(".card-description").textContent = taskDescription
@@ -77,13 +95,8 @@ function createNewCard(taskTitle, taskDescription) {
                 card.querySelector('.btn-delete').classList.toggle('btn_finished', isChecked)
                 
                 // Deshabilito los botones de edición y eliminación si la tarea está marcada como finalizada
-                if (isChecked) {
-                    card.querySelector('.btn-edit').disabled = true
-                    card.querySelector('.btn-delete').disabled = true
-                } else {
-                    card.querySelector('.btn-edit').disabled = false
-                    card.querySelector('.btn-delete').disabled = false
-                }
+                card.querySelector('.btn-edit').disabled = isChecked
+                card.querySelector('.btn-delete').disabled = isChecked
             })
 
             // Agrego el evento de edición de la tarea
@@ -91,17 +104,63 @@ function createNewCard(taskTitle, taskDescription) {
             btnEdit.addEventListener('click', function() {
                 isEditing = true
                 cardBeingEdited = this.closest('.card')
-                
-                // Apertura del modal de edición de tarea
                 openModal()
-
-                // Inserto los valores actuales en los inputs del modal
                 document.getElementById('taskTitle').value = cardBeingEdited.querySelector('.card-title').textContent
                 document.getElementById('taskDescription').value = cardBeingEdited.querySelector('.card-description').textContent
+            })
+
+            // Agregar evento de eliminación específico para esta tarjeta
+            const btnDelete = card.querySelector('.btn-delete')
+            btnDelete.addEventListener('click', function() {
+                taskToDelete = this.closest('.card')
+                openDeleteTaskModal()
             })
 
             document.querySelector('.main_task_container').appendChild(card)
             closeModal()
         })
-        .catch(error => console.error('Error al cargar la tarjeta de la nueva tarea:', error.message))
+        .catch(error => {
+            console.error('Error:', error.message)
+            alert('Hubo un error al crear la tarea: ' + error.message)
+        })
+}
+
+
+// Evento de eliminación de tarea
+let deleteTaskBtn = document.querySelector('.btn-delete')
+deleteTaskBtn.addEventListener('click', function () {
+    taskToDelete = this.closest('.card')
+    openDeleteTaskModal()
+})
+
+
+// Función para abrir el modal de eliminación de tareas
+function openDeleteTaskModal() {
+    deleteTaskModal.style.display = "block"
+    document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)"
+
+    // Cierro el modal al hacer click en el botón 'X'
+    const btnClose = deleteTaskModal.querySelector('.close')
+    btnClose.addEventListener('click', closeDeleteTaskModal)
+
+    // Cierro el modal si se hace click en el botón de cancelar
+    const btnCancel = deleteTaskModal.querySelector('.btn-cancel')
+    btnCancel.addEventListener('click', closeDeleteTaskModal)
+
+    // Confirmar eliminación
+    const btnConfirmDelete = deleteTaskModal.querySelector('.btn-confirm')
+    btnConfirmDelete.addEventListener('click', function() {
+        if (taskToDelete) {
+            taskToDelete.remove()
+            taskToDelete = null
+            closeDeleteTaskModal()
+        }
+    })
+}
+
+// Función para cerrar el modal de eliminación de tareas
+function closeDeleteTaskModal() {
+    deleteTaskModal.style.display = "none"
+    document.body.style.backgroundColor = "#f1f2f6"
+    taskToDelete = null
 }
