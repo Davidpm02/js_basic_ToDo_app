@@ -6,6 +6,7 @@
     -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
     padding: 10px;
+    margin: 10px;
 }
 
 .card:hover {
@@ -139,6 +140,15 @@
   stroke-dashoffset: 0;
 }
 
+/** ESTILOS PARA EL CONTENEDOR DE TAREAS **/
+
+.main_task_container {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 /** ESTILOS PARA CLASES DESTINADAS A TAREAS CUMPLIDAS **/
 
 .card_finished {
@@ -156,5 +166,9 @@
 
 .btn_finished {
   text-decoration: line-through;
-  
+}
+
+.btn_finished:disabled {
+  filter: grayscale(100%);
+  cursor: not-allowed;
 }

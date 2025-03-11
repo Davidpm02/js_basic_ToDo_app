@@ -45,17 +45,37 @@ taskForm.addEventListener('submit', function (event) {
 
             card.querySelector(".card-title").textContent = taskTitle;
             card.querySelector(".card-description").textContent = taskDescription;
-            document.getElementById('main_task_container').appendChild(card)
+            
+            // Agregar el evento del checkbox a la nueva tarjeta
+            const checkbox = card.querySelector('input[type="checkbox"]');
+            checkbox.addEventListener('change', function() {
+                const isChecked = checkbox.checked;
+                card.classList.toggle('card_finished', isChecked);
+                card.querySelector('.card-title').classList.toggle('card-title_finished', isChecked);
+                card.querySelector('.card-description').classList.toggle('card-description_finished', isChecked);
+                card.querySelector('.btn-edit').classList.toggle('btn_finished', isChecked);
+                card.querySelector('.btn-delete').classList.toggle('btn_finished', isChecked);
+                
+                // Deshabilito los botones de edición y eliminación si la tarea está marcada como finalizada
+                if (isChecked) {
+                    card.querySelector('.btn-edit').disabled = true;
+                    card.querySelector('.btn-delete').disabled = true;
+                } else {
+                    card.querySelector('.btn-edit').disabled = false;
+                    card.querySelector('.btn-delete').disabled = false;
+                }
+            });
+
+            document.querySelector('.main_task_container').appendChild(card);
             
             // Reinicio el color del fondo
-            document.body.style.backgroundColor = "#f1f2f6"
+            document.body.style.backgroundColor = "#f1f2f6";
 
             // Limpio el formulario
-            taskForm.reset()
-            
+            taskForm.reset();
         })
-        .catch(error => console.error('Error al cargar la tarjeta de la nueva tarea:', error.message))
+        .catch(error => console.error('Error al cargar la tarjeta de la nueva tarea:', error.message));
     
     // Cierro el modal de creación de tareas
-    modal.style.display = 'none'
+    modal.style.display = 'none';
 })
